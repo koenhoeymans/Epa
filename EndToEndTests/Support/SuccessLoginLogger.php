@@ -12,7 +12,7 @@ use Epa\Plugin;
 /**
  * @package Epa
  */
-class SuccessLoginLogger extends Plugin
+class SuccessLoginLogger implements Plugin
 {
 	private $log = '';
 

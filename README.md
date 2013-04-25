@@ -21,7 +21,9 @@ Let's first look at what an event is. Actually an event can be just about everyt
 want it to be. It just needs to implement `Epa\Event` but has no defined methods. This
 can be an event:
 
-	class LoginEvent implements Event
+	use Epa\Event;
+
+	class FailedLogin implements Event
 	{
 		private $username;
 		private $loginSucceeded;
@@ -46,6 +48,8 @@ can be an event:
 A plugin that logs failed logins could make use of this. Another event might
 allow a plugin to change something:
 
+	use Epa\Event;
+
 	class BeforePublishPostEvent implements Event
 	{
 		private $postContent;
@@ -66,18 +70,25 @@ allow a plugin to change something:
 		}
 	}
 
-For each class that you would allow a plugin to change something you use `Epa\Observable`.
+For each class that you allow a plugin to change something you use
+the interface `Epa\Observable` and the train `Epa\Pluggable` to implement it.
 
-	MyExtendableClass
+	use Epa\Observable;
+	use Epa\Pluggable;
+
+	class MyClass implements Observable
 	{
-		use \Epa\Observable;
+		use Pluggable;
 	}
 
 Anytime your class has something interesting for plugins you can 'throw' an event.
 
-	BlogPostDisplay
+	use Epa\Observable;
+	use Epa\Pluggable;
+
+	class BlogPostDisplay implements Observable
 	{
-		use \Epa\Observable;
+		use Pluggable;
 
 		public function display($postContent)
 		{
@@ -89,6 +100,29 @@ Anytime your class has something interesting for plugins you can 'throw' an even
 
 Now all plugins that are interested in this event will be notified and be able to do
 something with the post content.
+
+Plugins implement the interface `Epa\Plugin`:
+
+	use Epa\Plugin;
+
+	class FailedLoginLogger implements Plugin
+	{
+		public function register(EventMapper $mapper)
+		{
+			$mapper->registerForEvent('FailedLogin', function(FailedLogin $event) {
+				$this->handleFailedLoginEvent($event);
+			});
+		}
+	
+		private function handleFailedLoginEvent(FailedLogin $event)
+		{
+			// $event->getUserName();
+			// write to log etc
+		}
+	{
+
+The event names are the class names of the event that is thrown by the
+observable/pluggable classes.
 
 
 Advantages and disadvantages

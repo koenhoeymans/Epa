@@ -8,7 +8,7 @@ namespace Epa;
 /**
  * @package Epa
  */
-abstract class Plugin
+interface Plugin
 {
-	abstract public function register(EventMapper $mapper);
+	public function register(EventMapper $mapper);
 }
