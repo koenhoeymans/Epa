@@ -14,14 +14,13 @@ class EventDispatcher implements Observer, EventMapper
 
 	public function notify(Event $event)
 	{
-		$eventName = get_class($event);
-		if (!isset($this->observers[$eventName]))
+		$newEventEvent = new \Epa\NewEventEvent(get_class($event));
+
+		$this->notifyObservers($newEventEvent, 'Epa\\NewEventEvent');
+
+		foreach ($newEventEvent->getNames() as $eventName)
 		{
-			return;
-		}
-		foreach ($this->observers[$eventName] as $callback)
-		{
-			$callback($event);
+			$this->notifyObservers($event, $eventName);
 		}
 	}
 
@@ -33,5 +32,17 @@ class EventDispatcher implements Observer, EventMapper
 	public function registerPlugin(Plugin $plugin)
 	{
 		$plugin->register($this);
+	}
+
+	private function notifyObservers(Event $event, $eventName)
+	{
+		if (!isset($this->observers[$eventName]))
+		{
+			return;
+		}
+		foreach ($this->observers[$eventName] as $callback)
+		{
+			$callback($event);
+		}
 	}
 }

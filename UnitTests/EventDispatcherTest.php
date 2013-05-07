@@ -56,4 +56,64 @@ class Epa_UnitTestsTests_EventDispatcherTest extends PHPUnit_Framework_TestCase
 
 		$this->eventDispatcher->notify($event);
 	}
+
+	/**
+	 * @test
+	 */
+	public function throwsNewEventEvent()
+	{
+		$this->callbackCalled = false;;
+
+		$this->eventDispatcher->registerForEvent('Epa\\NewEventEvent', function(\Epa\NewEventEvent $event) {
+			$this->callbackCalled = true;
+		});
+
+		$this->eventDispatcher->notify($this->getMock('Epa\\Event'));
+
+		if (!$this->callbackCalled)
+		{
+			$this->fail('NewEventEvent not thrown.');
+		}
+	}
+
+	/**
+	 * @test
+	 */
+	public function notifiesForAllEventNames()
+	{
+		$this->callbackOriginalCalled = false;
+		$this->callbackAltCalled = false;
+
+		$event = $this->getMockBuilder('Epa\\Event')
+			->setMockClassName('FooEvent')
+			->getMock();
+
+		$this->eventDispatcher->registerForEvent(
+			'Epa\\NewEventEvent', function(\Epa\NewEventEvent $event
+		) {
+			$event->addName('BarEvent');
+		});
+
+		$this->eventDispatcher->registerForEvent(
+			'FooEvent', function(FooEvent $event
+		) {
+			$this->callbackOriginalCalled = true;
+		});
+		$this->eventDispatcher->registerForEvent(
+			'BarEvent', function(FooEvent $event
+		) {
+			$this->callbackAltCalled = true;
+		});
+
+		$this->eventDispatcher->notify($event);
+
+		if (!$this->callbackOriginalCalled)
+		{
+			$this->fail('Full eventname registars not notified.');
+		}
+		if (!$this->callbackAltCalled)
+		{
+			$this->fail('Alternative eventname registrars not notified.');
+		}
+	}
 }
