@@ -2,7 +2,7 @@
 
 require_once('TestHelper.php');
 
-class Epa_UnitTestsTests_EventDispatcherTest extends PHPUnit_Framework_TestCase
+class Epa_UnitTests_EventDispatcherTest extends PHPUnit_Framework_TestCase
 {
 	public function setup()
 	{
