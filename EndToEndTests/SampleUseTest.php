@@ -67,5 +67,10 @@ class Epa_EndToEndTests_SampleUseTest extends PHPUnit_Framework_TestCase
 
 		$login->login('foo', 'bar');
 		$this->assertEquals('last login was foo:bar', $loginEventLogger->getLastLogin());
+
+		# A similar plugin already exists (`Epa\InterfaceToEventNamePlugin`). It adds
+		# event names that are specified inthe doc comments of the interfaces
+		# an event implements. `@event` adds the interface name as an event.
+		# `@eventName someName` adds the specified name as an event.
 	}
 }
