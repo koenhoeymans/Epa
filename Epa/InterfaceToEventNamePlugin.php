@@ -21,10 +21,6 @@ class InterfaceToEventNamePlugin implements Plugin
 	{
 		foreach (class_implements($event->getOriginalName()) as $implemented)
 		{
-			if (!interface_exists($implemented))
-			{
-				continue;
-			}
 			$this->addDocCommentNames($implemented, $event);
 		}
 	}
