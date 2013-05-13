@@ -8,7 +8,7 @@ namespace Epa;
 /**
  * @package Epa
  */
-class InterfaceToEventNamePlugin implements Plugin
+class MetaEventNamePlugin implements Plugin
 {
 	public function register(EventMapper $mapper)
 	{
@@ -19,24 +19,29 @@ class InterfaceToEventNamePlugin implements Plugin
 
 	private function handleEvent(NewEventEvent $event)
 	{
+		$this->addDocCommentNames($event->getOriginalName(), $event);
 		foreach (class_implements($event->getOriginalName()) as $implemented)
 		{
 			$this->addDocCommentNames($implemented, $event);
 		}
+		foreach (class_parents($event->getOriginalName()) as $extended)
+		{
+			$this->addDocCommentNames($extended, $event);
+		}
 	}
 
-	private function addDocCommentNames($interface, NewEventEvent $event)
+	private function addDocCommentNames($class, NewEventEvent $event)
 	{
-		$reflClass = new \ReflectionClass($interface);
+		$reflClass = new \ReflectionClass($class);
 		$docComm = $reflClass->getDocComment();
 
-		if(preg_match("@\n\s*\*\s*\@event\n@i", $docComm))
+		if(preg_match("@\n\s*\*\s*\@eventname\n@i", $docComm))
 		{
-			$event->addName($interface);
+			$event->addName($class);
 		}
 
 		preg_match_all(
-			"@(?<=\n)\s*\*\s\@eventName\s+(?<name>.+?)(?=\n)@i",
+			"@(?<=\n)\s*\*\s\@eventname\s+(?<name>\S+?)(?=\n)@i",
 			$docComm,
 			$matches,
 			PREG_PATTERN_ORDER

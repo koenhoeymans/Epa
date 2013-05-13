@@ -7,8 +7,7 @@ namespace Epa\UnitTests\Support;
 
 /**
  * @package Epa
- * @eventname
  * @eventname Foo
  */
-interface InterfaceWithDocCommentEvent
+class EventExtendingClass extends ExtendedClassWithDocEvent
 {}
