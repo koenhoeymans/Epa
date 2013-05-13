@@ -34,13 +34,13 @@ class InterfaceToEventNamePlugin implements Plugin
 		$reflClass = new \ReflectionClass($interface);
 		$docComm = $reflClass->getDocComment();
 
-		if(preg_match("@\n\s*\*\s*\@event\n@", $docComm))
+		if(preg_match("@\n\s*\*\s*\@event\n@i", $docComm))
 		{
 			$event->addName($interface);
 		}
 
 		preg_match_all(
-			"@(?<=\n)\s*\*\s\@eventName\s+(?<name>.+?)(?=\n)@",
+			"@(?<=\n)\s*\*\s\@eventName\s+(?<name>.+?)(?=\n)@i",
 			$docComm,
 			$matches,
 			PREG_PATTERN_ORDER
