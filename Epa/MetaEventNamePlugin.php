@@ -10,6 +10,9 @@ namespace Epa;
  */
 class MetaEventNamePlugin implements Plugin
 {
+	/**
+	 * @see \Epa\Plugin::register()
+	 */
 	public function register(EventMapper $mapper)
 	{
 		$mapper->registerForEvent('Epa\\NewEventEvent', function(NewEventEvent $event) {
@@ -17,6 +20,15 @@ class MetaEventNamePlugin implements Plugin
 		});
 	}
 
+	/**
+	 * Adds event names in the doc comments as an event name that can be registered for.
+	 * 
+	 *     @eventname Foo
+	 * 
+	 * Adds the event name 'Foo' for an event class.
+	 * 
+	 * @param NewEventEvent $event
+	 */
 	private function handleEvent(NewEventEvent $event)
 	{
 		$this->addDocCommentNames($event->getOriginalName(), $event);

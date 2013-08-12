@@ -17,6 +17,9 @@ class EventDispatcher implements Observer, EventMapper
 		$this->observers = new \ArrayObject();
 	}
 
+	/**
+	 * @see \Epa\Observer::notify()
+	 */
 	public function notify(Event $event)
 	{
 		$newEventEvent = new \Epa\NewEventEvent(get_class($event));
@@ -38,6 +41,13 @@ class EventDispatcher implements Observer, EventMapper
 		return new CallbackReorder($this->observers, $event, $callback);
 	}
 
+	/**
+	 * Register a plugin. The plugin will be asked to register callbacks for events
+	 * (@see \Epa\EventDispatcher::registerForEvent) so the callbacks will be
+	 * called when the event happens.
+	 * 
+	 * @param Plugin $plugin
+	 */
 	public function registerPlugin(Plugin $plugin)
 	{
 		$plugin->register($this);

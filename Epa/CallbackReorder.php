@@ -23,6 +23,9 @@ class CallbackReorder implements CallbackPosition
 		$this->callback = $callback;
 	}
 
+	/**
+	 * @see \Epa\CallbackPosition::first()
+	 */
 	public function first()
 	{
 		$arr = $this->arr->offsetGet($this->eventName);
