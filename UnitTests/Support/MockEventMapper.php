@@ -16,7 +16,7 @@ class MockEventMapper implements EventMapper
 
 	private $callback;
 
-	public function registerForEvent($event, $callback)
+	public function registerForEvent($event, Callable $callback)
 	{
 		$this->event = $event;
 		$this->callback = $callback;

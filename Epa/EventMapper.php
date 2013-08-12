@@ -10,5 +10,11 @@ namespace Epa;
  */
 interface EventMapper
 {
-	public function registerForEvent($event, $callback);
+	/**
+	 * 
+	 * @param string $event
+	 * @param Callable $callback
+	 * @return CallbackPosition
+	 */
+	public function registerForEvent($event, Callable $callback);
 }

@@ -73,7 +73,7 @@ class Epa_EndToEndTests_SampleUseTest extends PHPUnit_Framework_TestCase
 		$eventNameChanger = new \Epa\EndToEndTests\Support\EventNameChangerPlugin();
 		$eventDispatcher->registerPlugin($eventNameChanger);
 
-		# We'll add a loginLogger that registers itself for the event `LoginEvent`
+		# We'll add a loginLogger that registers a callback for the event `LoginEvent`
 		# instead of the standard `Epa\EndToEndTests\Support\LoginEvent`. The
 		# EventNameChangerPlugin added this version of event names to events.
 
@@ -100,5 +100,23 @@ class Epa_EndToEndTests_SampleUseTest extends PHPUnit_Framework_TestCase
 		#      */
 		#
 		# This will add the name 'Foo' as an eventname.
+
+		# When you register a callback for an event the callbacks are notified in
+		# order of registration. Sometimes you may want to add a callback before
+		# any other callback. Inside the plugin you can achieve this using `first`:
+		#
+		#     $mapper
+		#       ->registerForEvent('login', function() {$this->handleEvent($event); })
+		#       ->first();
+		#
+		# Let's add another plugin that registers a callback for the event
+		# `LoginEvent`, like the `LoginEventLogger` above, but adds it before and
+		# has the callback change the username.
+
+		$loginNameChanger = new \Epa\EndToEndTests\Support\LoginNameChanger();
+		$eventDispatcher->registerPlugin($loginNameChanger);
+
+		$login->login('foo', 'bar');
+		$this->assertEquals('last login was baz:bar', $loginEventLogger->getLastLogin());
 	}
 }

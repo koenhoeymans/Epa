@@ -1,6 +1,10 @@
 Epa Changelog
 =============
 
+0.2.4
+
+	* Plugins can add callbacks to the first position in the callback sequence.
+
 0.2.3
 
 	* Plugin allows that eventnames can also be specified in the PHPDoc

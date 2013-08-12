@@ -10,7 +10,12 @@ namespace Epa;
  */
 class EventDispatcher implements Observer, EventMapper
 {
-	private $observers = array();
+	private $observers;
+
+	public function __construct()
+	{
+		$this->observers = new \ArrayObject();
+	}
 
 	public function notify(Event $event)
 	{
@@ -24,9 +29,13 @@ class EventDispatcher implements Observer, EventMapper
 		}
 	}
 
-	public function registerForEvent($event, $callback)
+	/**
+	 * @see \Epa\EventMapper::registerForEvent()
+	 */
+	public function registerForEvent($event, Callable $callback)
 	{
 		$this->observers[$event][] = $callback;
+		return new CallbackReorder($this->observers, $event, $callback);
 	}
 
 	public function registerPlugin(Plugin $plugin)

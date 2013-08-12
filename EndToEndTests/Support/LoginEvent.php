@@ -35,6 +35,11 @@ class LoginEvent implements Event
 		return !$this->loginSucceeded();
 	}
 
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
+
 	public function getName()
 	{
 		return $this->name;
