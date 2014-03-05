@@ -1,23 +1,16 @@
 <?php
 
-/**
- * @package Epa
- */
 namespace Epa\EndToEndTests\Support;
 
-use Epa\NewEventEvent;
-use Epa\EventMapper;
+use Epa\Api\NewEventEvent;
+use Epa\Api\EventDispatcher;
+use Epa\Api\Plugin;
 
-use Epa\Plugin;
-
-/**
- * @package Epa
- */
 class EventNameChangerPlugin implements Plugin
 {
-	public function register(EventMapper $mapper)
+	public function registerHandlers(EventDispatcher $mapper)
 	{
-		$mapper->registerForEvent('Epa\\NewEventEvent', function(NewEventEvent $event) {
+		$mapper->registerForEvent('Epa\\Api\\NewEventEvent', function(NewEventEvent $event) {
 			$this->handleEvent($event);
 		});
 	}

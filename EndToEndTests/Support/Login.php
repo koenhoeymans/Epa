@@ -1,19 +1,13 @@
 <?php
 
-/**
- * @package Epa
- */
 namespace Epa\EndToEndTests\Support;
 
-use Epa\Observable;
-use Epa\Pluggable;
+use Epa\Api\Observable;
+use Epa\Api\ObserverStore;
 
-/**
- * @package Epa
- */
 class Login implements Observable
 {
-	use Pluggable;
+	use ObserverStore;
 
 	private $username = 'bar';
 

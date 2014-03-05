@@ -14,20 +14,21 @@ class Epa_UnitTests_EventDispatcherTest extends PHPUnit_Framework_TestCase
 	 */
 	public function asksPluginsToRegisterForAnEventWithCallback()
 	{
-		$plugin = $this->getMock('Epa\\Plugin');
-		$plugin->expects($this->once())
-			->method('register');
+		$plugin = $this->getMock('Epa\\Api\\Plugin');
+		$plugin
+			->expects($this->once())
+			->method('registerHandlers');
 
-		$this->eventDispatcher->registerPlugin($plugin);
+		$this->eventDispatcher->addPlugin($plugin);
 	}
 
 	/**
 	 * @test
 	 */
-	public function registeredCallbacksArePassedEventWhenItHappens()
+	public function registeredHandlersArePassedEventWhenItHappens()
 	{
 		$this->callbackCalled = false;
-		$event = $this->getMockBuilder('Epa\\Event')
+		$event = $this->getMockBuilder('Epa\\Api\\Event')
 			->setMockClassName('FooEvent')
 			->getMock();
 		$this->eventDispatcher->registerForEvent('FooEvent', function(FooEvent $event) {
@@ -45,7 +46,7 @@ class Epa_UnitTests_EventDispatcherTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
-	public function notifiesOnlyForRegisteredEvents()
+	public function notifiesHandlersOnlyForEventsTheyRegisteredFor()
 	{
 		$event = $this->getMockBuilder('Epa\\Event')
 			->setMockClassName('FooEvent')
@@ -60,15 +61,18 @@ class Epa_UnitTests_EventDispatcherTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @test
 	 */
-	public function throwsNewEventEvent()
+	public function throwsApiNewEventEventWhenAnEventIsThrown()
 	{
-		$this->callbackCalled = false;;
+		$this->callbackCalled = false;
 
-		$this->eventDispatcher->registerForEvent('Epa\\NewEventEvent', function(\Epa\NewEventEvent $event) {
-			$this->callbackCalled = true;
-		});
+		$this->eventDispatcher->registerForEvent(
+			'Epa\\Api\\NewEventEvent',
+			function(\Epa\Api\NewEventEvent $event) {
+				$this->callbackCalled = true;
+			}
+		);
 
-		$this->eventDispatcher->notify($this->getMock('Epa\\Event'));
+		$this->eventDispatcher->notify($this->getMock('Epa\\Api\\Event'));
 
 		if (!$this->callbackCalled)
 		{
@@ -84,12 +88,12 @@ class Epa_UnitTests_EventDispatcherTest extends PHPUnit_Framework_TestCase
 		$this->callbackOriginalCalled = false;
 		$this->callbackAltCalled = false;
 
-		$event = $this->getMockBuilder('Epa\\Event')
+		$event = $this->getMockBuilder('Epa\\Api\\Event')
 			->setMockClassName('FooEvent')
 			->getMock();
 
 		$this->eventDispatcher->registerForEvent(
-			'Epa\\NewEventEvent', function(\Epa\NewEventEvent $event
+			'Epa\\Api\\NewEventEvent', function(\Epa\NewEventEvent $event
 		) {
 			$event->addName('BarEvent');
 		});

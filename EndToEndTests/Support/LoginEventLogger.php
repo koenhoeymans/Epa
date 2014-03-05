@@ -1,23 +1,17 @@
 <?php
 
-/**
- * @package Epa
- */
 namespace Epa\EndToEndTests\Support;
 
-use Epa\EventMapper;
-use Epa\Plugin;
+use Epa\Api\EventDispatcher;
+use Epa\Api\Plugin;
 
-/**
- * @package Epa
- */
 class LoginEventLogger implements Plugin
 {
 	private $name = 'LoginEvent';
 
 	private $pass = 'NotCalled';
 
-	public function register(EventMapper $mapper)
+	public function registerHandlers(EventDispatcher $mapper)
 	{
 		$mapper->registerForEvent('LoginEvent', function(LoginEvent $event) {
 			$this->handleLogin($event);

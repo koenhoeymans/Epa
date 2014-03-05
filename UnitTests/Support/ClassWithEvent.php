@@ -5,17 +5,14 @@
  */
 namespace Epa\UnitTests\Support;
 
-use Epa\Pluggable;
-use Epa\Event;
-
 /**
  * @package Epa
  */
 class ClassWithEvent
 {
-	use Pluggable;
+	use \Epa\Api\ObserverStore;
 
-	public function createEvent(Event $event)
+	public function createEvent(\Epa\Api\Event $event)
 	{
 		$this->notify($event);
 	}

@@ -1,15 +1,9 @@
 <?php
 
-/**
- * @package Epa
- */
 namespace Epa\EndToEndTests\Support;
 
-use Epa\Event;
+use Epa\Api\Event;
 
-/**
- * @package Epa
- */
 class LoginEvent implements Event
 {
 	private $name;

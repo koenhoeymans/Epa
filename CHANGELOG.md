@@ -1,6 +1,16 @@
 Epa Changelog
 =============
 
+0.3.0
+
+	* Added public API.
+	* Removed `@package` in docblocks.
+	* Renaming of some classes, interfaces and methods.
+	* Improved Doc Comments.
+	* Events also have the name of all parent classes and interfaces.
+	* Option to remove eventnames.
+	* Moved `MetaEventNamePlugin` to own repo.
+
 0.2.4
 
 	* Plugins can add callbacks to the first position in the callback sequence.

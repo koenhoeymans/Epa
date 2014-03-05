@@ -1,16 +1,10 @@
 <?php
 
-/**
- * @package Epa
- */
 namespace Epa\EndToEndTests\Support;
 
-use Epa\EventMapper;
-use Epa\Plugin;
+use Epa\Api\EventDispatcher;
+use Epa\Api\Plugin;
 
-/**
- * @package Epa
- */
 class LoginNameChanger implements Plugin
 {
 	public function register(EventMapper $mapper)

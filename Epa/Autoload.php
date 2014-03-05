@@ -1,10 +1,6 @@
 <?php
 
 /**
- * @package Epa
- */
-
-/**
  * Loads the files for the Epa library.
  */
 function Epa_Autoload($className)

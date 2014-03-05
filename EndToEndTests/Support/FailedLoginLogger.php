@@ -1,16 +1,10 @@
 <?php
 
-/**
- * @package Epa
- */
 namespace Epa\EndToEndTests\Support;
 
-use Epa\Observer;
-use Epa\Event;
+use Epa\Api\Observer;
+use Epa\Api\Event;
 
-/**
- * @package Epa
- */
 class FailedLoginLogger implements Observer
 {
 	private $log;

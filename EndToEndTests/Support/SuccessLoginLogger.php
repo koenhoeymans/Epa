@@ -1,22 +1,15 @@
 <?php
 
-/**
- * @package Epa
- */
 namespace Epa\EndToEndTests\Support;
 
-use Epa\Observer;
-use Epa\EventMapper;
-use Epa\Plugin;
+use Epa\Api\EventDispatcher;
+use Epa\Api\Plugin;
 
-/**
- * @package Epa
- */
 class SuccessLoginLogger implements Plugin
 {
 	private $log = '';
 
-	public function register(EventMapper $mapper)
+	public function registerHandlers(EventDispatcher $mapper)
 	{
 		$mapper->registerForEvent(
 			'Epa\\EndToEndTests\\Support\\LoginEvent', $this->handleSuccessLogin()

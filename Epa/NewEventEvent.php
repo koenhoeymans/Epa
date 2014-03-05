@@ -1,51 +1,42 @@
 <?php
 
-/**
- * @package Epa
- */
 namespace Epa;
 
-/**
- * This event is 'thrown' when there is a new event.
- * 
- * @package Epa
- */
-class NewEventEvent implements Event
+class NewEventEvent implements \Epa\Api\NewEventEvent
 {
-	private $names = array();
+	private $names;
 
-	public function __construct($name)
+	public function __construct(array $names)
 	{
-		$this->names[] = $name;
+		$this->names = $names;
 	}
 
 	/**
-	 * Get the original name of the event.
-	 * 
-	 * @return string
+	 * @see \Epa\Api\NewEventEvent::getEventNames()
 	 */
-	public function getOriginalName()
-	{
-		return $this->names[0];
-	}
-
-	/**
-	 * Get all event names for this event.
-	 * 
-	 * @return string
-	 */
-	public function getNames()
+	public function getEventNames()
 	{
 		return $this->names;
 	}
 
 	/**
-	 * Adds an event name for this event.
-	 * 
-	 * @param string $name
+	 * @see \Epa\Api\NewEventEvent::addName()
 	 */
 	public function addName($name)
 	{
 		$this->names[] = $name;
+	}
+
+	/**
+	 * @see \Epa\Api\NewEventEvent::removeName()
+	 */
+	public function removeName($name)
+	{
+		$key = array_search($name, $this->names);
+
+		if ($key !== false)
+		{
+			unset($this->names[$key]);
+		}
 	}
 }

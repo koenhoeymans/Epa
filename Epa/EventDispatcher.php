@@ -1,14 +1,8 @@
 <?php
 
-/**
- * @package Epa
- */
 namespace Epa;
 
-/**
- * @package Epa
- */
-class EventDispatcher implements Observer, EventMapper
+class EventDispatcher implements \Epa\Api\Observer, \Epa\Api\EventDispatcher
 {
 	private $observers;
 
@@ -18,22 +12,28 @@ class EventDispatcher implements Observer, EventMapper
 	}
 
 	/**
-	 * @see \Epa\Observer::notify()
+	 * @see \Epa\Api\Observer::notify()
 	 */
-	public function notify(Event $event)
+	public function notify(\Epa\Api\Event $event)
 	{
-		$newEventEvent = new \Epa\NewEventEvent(get_class($event));
+		$newEventEvent = new \Epa\NewEventEvent(
+			array_merge(
+				array(get_class($event)),
+				class_parents($event),
+				array_values(class_implements($event))
+			)
+		);
 
-		$this->notifyObservers($newEventEvent, 'Epa\\NewEventEvent');
+		$this->notifyObservers($newEventEvent, 'Epa\\Api\\NewEventEvent');
 
-		foreach ($newEventEvent->getNames() as $eventName)
+		foreach ($newEventEvent->getEventNames() as $eventName)
 		{
 			$this->notifyObservers($event, $eventName);
 		}
 	}
 
 	/**
-	 * @see \Epa\EventMapper::registerForEvent()
+	 * @see \Epa\Api\EventDispatcher::registerForEvent()
 	 */
 	public function registerForEvent($event, Callable $callback)
 	{
@@ -42,18 +42,14 @@ class EventDispatcher implements Observer, EventMapper
 	}
 
 	/**
-	 * Register a plugin. The plugin will be asked to register callbacks for events
-	 * (@see \Epa\EventDispatcher::registerForEvent) so the callbacks will be
-	 * called when the event happens.
-	 * 
-	 * @param Plugin $plugin
+	 * @see \Epa\Api\EventDispatcher::addPlugin()
 	 */
-	public function registerPlugin(Plugin $plugin)
+	public function addPlugin(\Epa\Api\Plugin $plugin)
 	{
-		$plugin->register($this);
+		$plugin->registerHandlers($this);
 	}
 
-	private function notifyObservers(Event $event, $eventName)
+	private function notifyObservers(\Epa\Api\Event $event, $eventName)
 	{
 		if (!isset($this->observers[$eventName]))
 		{

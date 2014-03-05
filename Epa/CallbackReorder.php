@@ -1,14 +1,11 @@
 <?php
 
-/**
- * @package Epa
- */
 namespace Epa;
 
 /**
- * @package Epa
+ * Implementing the fluid interface of `Epa\Api\CallbackPosition`.
  */
-class CallbackReorder implements CallbackPosition
+class CallbackReorder implements \Epa\Api\CallbackPosition
 {
 	private $arr;
 
