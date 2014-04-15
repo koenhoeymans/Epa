@@ -7,9 +7,9 @@ use Epa\Api\Plugin;
 
 class LoginNameChanger implements Plugin
 {
-	public function register(EventMapper $mapper)
+	public function registerHandlers(EventDispatcher $dispatcher)
 	{
-		$mapper
+		$dispatcher
 			->registerForEvent('LoginEvent', function(LoginEvent $event)
 				{
 					$this->handleLogin($event);

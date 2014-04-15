@@ -35,7 +35,7 @@ class Epa_EndToEndTests_SampleUseTest extends PHPUnit_Framework_TestCase
 		# The EventDispatcher is an interface that extends that of an observer and
 		# thus can be added like the above `SuccessLoginLogger`. It listens to events
 		# but dispatches the events to plugins. Plugins register themselves with
-		# the EventDispatcher with `registerPlugin`. The EventDispatcher then calls
+		# the EventDispatcher with `addPlugin`. The EventDispatcher then calls
 		# them back giving these plugins the chance to register callbacks for certain
 		# events. That means that instead it listens to events (like the log observer
 		# above, and then notifies all callbacks only when a certain event happened
@@ -103,7 +103,7 @@ class Epa_EndToEndTests_SampleUseTest extends PHPUnit_Framework_TestCase
 		# registers (using `first`). It will change the username used to log in.
 
 		$loginNameChanger = new \Epa\EndToEndTests\Support\LoginNameChanger();
-		$eventDispatcher->registerPlugin($loginNameChanger);
+		$eventDispatcher->addPlugin($loginNameChanger);
 
 		$login->login('foo', 'bar');
 		$this->assertEquals('last login was baz:bar', $loginEventLogger->getLastLogin());

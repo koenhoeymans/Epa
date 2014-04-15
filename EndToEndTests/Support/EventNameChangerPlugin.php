@@ -17,9 +17,11 @@ class EventNameChangerPlugin implements Plugin
 
 	private function handleEvent(NewEventEvent $event)
 	{
-		$name = $event->getOriginalName();
-		$newName = substr(strrchr($name, '\\'), 1);
-
-		$event->addName($newName);
+		$names = $event->getEventNames();
+		foreach ($names as $name)
+		{
+			$newName = substr(strrchr($name, '\\'), 1);
+			$event->addName($newName);
+		}
 	}
 }
