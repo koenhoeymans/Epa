@@ -32,15 +32,14 @@ class Epa_EndToEndTests_SampleUseTest extends PHPUnit_Framework_TestCase
 
 		# # Plugin style
 		#
-		# The EventDispatcher is an interface that extends that of an observer and
+		# The EventDispatcher is an interface that extends the observer interface and
 		# thus can be added like the above `SuccessLoginLogger`. It listens to events
 		# but dispatches the events to plugins. Plugins register themselves with
 		# the EventDispatcher with `addPlugin`. The EventDispatcher then calls
 		# them back giving these plugins the chance to register callbacks for certain
-		# events. That means that instead it listens to events (like the log observer
-		# above, and then notifies all callbacks only when a certain event happened
-		# they are interested in. It provides a central point
-		# to register plugins to have callbacks notified of specific events.
+		# events. That means that it listens to events and notifies all callbacks
+		# only when a certain event happened they are interested in. It provides
+		# a central point to register plugins to have callbacks notified of specific events.
 		#
 		# Plugins register callbacks to events and this registration is by
 		# the class name of the events (this can be changed, see below).
