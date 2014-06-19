@@ -17,13 +17,13 @@ class SuccessLoginLogger implements \Epa\Api\Plugin
     private function handleSuccessLogin()
     {
         return function (\Epa\LoginEvent $event) {
-            if (! $event->loginSucceeded ()) {
+            if (! $event->loginSucceeded()) {
                 return;
             }
             $this->log = 'success for '
-                . $event->getName ()
+                . $event->getName()
                 . ':'
-                . $event->getPass ();
+                . $event->getPass();
         };
     }
 

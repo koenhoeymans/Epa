@@ -9,4 +9,5 @@ namespace Epa\Api;
  * callbacks that are subscribed to the event.
  */
 interface Event
-{}
+{
+}

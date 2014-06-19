@@ -29,5 +29,5 @@ interface EventDispatcher extends Observer
      *
      * @return \Epa\Api\CallbackPosition
      */
-    public function registerForEvent($event, Callable $handler);
+    public function registerForEvent($event, callable $handler);
 }

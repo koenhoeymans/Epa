@@ -16,7 +16,7 @@ class CallbackReorder implements \Epa\Api\CallbackPosition
     public function __construct(
         \ArrayObject $arr,
         $eventName,
-        Callable $callback
+        callable $callback
     ) {
         $this->arr = $arr;
         $this->eventName = $eventName;

@@ -30,7 +30,7 @@ trait ObserverStore
     protected function notify(Event $event)
     {
         foreach ($this->observers as $observer) {
-            $observer->notify ( $event );
+            $observer->notify($event);
         }
     }
 }

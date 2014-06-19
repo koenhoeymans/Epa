@@ -10,7 +10,7 @@ class EventDispatcherTest extends \PHPUnit_Framework_TestCase
 
     public function setup()
     {
-        $this->eventDispatcher = new \Epa\EventDispatcher ();
+        $this->eventDispatcher = new \Epa\EventDispatcher();
         $this->fooEvent = new FooEvent();
         $this->barEvent = new BarEvent();
     }
@@ -23,7 +23,7 @@ class EventDispatcherTest extends \PHPUnit_Framework_TestCase
         $plugin = $this->getMock('Epa\\Api\\Plugin');
         $plugin->expects($this->once())->method('registerHandlers');
 
-        $this->eventDispatcher->addPlugin ($plugin);
+        $this->eventDispatcher->addPlugin($plugin);
     }
 
     /**
@@ -91,7 +91,7 @@ class EventDispatcherTest extends \PHPUnit_Framework_TestCase
         $this->callbackOriginalCalled = false;
         $this->callbackAltCalled = false;
 
-        $this->eventDispatcher->registerForEvent (
+        $this->eventDispatcher->registerForEvent(
             'Epa\\Api\\NewEventEvent',
             function (\Epa\Api\NewEventEvent $event) {
                 $event->addName('BarEvent');

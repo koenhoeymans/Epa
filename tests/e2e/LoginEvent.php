@@ -24,7 +24,7 @@ class LoginEvent implements \Epa\Api\Event
 
     public function loginFailed()
     {
-        return !$this->loginSucceeded ();
+        return !$this->loginSucceeded();
     }
 
     public function setName($name)

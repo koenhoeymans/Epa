@@ -17,9 +17,9 @@ class FailedLoginLogger implements \Epa\Api\Observer
         }
 
         $this->log = 'failure for '
-            . $event->getName ()
+            . $event->getName()
             . ':'
-            . $event->getPass ();
+            . $event->getPass();
     }
 
     public function getLog()

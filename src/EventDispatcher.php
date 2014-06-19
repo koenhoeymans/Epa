@@ -8,7 +8,7 @@ class EventDispatcher implements \Epa\Api\Observer, \Epa\Api\EventDispatcher
 
     public function __construct()
     {
-        $this->observers = new \ArrayObject ();
+        $this->observers = new \ArrayObject();
     }
 
     /**
@@ -36,7 +36,7 @@ class EventDispatcher implements \Epa\Api\Observer, \Epa\Api\EventDispatcher
      *
      * @see \Epa\Api\EventDispatcher::registerForEvent()
      */
-    public function registerForEvent($event, Callable $callback)
+    public function registerForEvent($event, callable $callback)
     {
         $this->observers[$event][] = $callback;
 

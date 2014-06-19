@@ -57,7 +57,7 @@ class SampleUseTest extends \PHPUnit_Framework_TestCase
         // );
 
         $logPlugin = new \Epa\SuccessLoginLogger();
-        $eventDispatcher->addPlugin ($logPlugin);
+        $eventDispatcher->addPlugin($logPlugin);
 
         $login->login('bar', 'baz');
         $this->assertEquals('success for bar:baz', $logPlugin->getLog());
