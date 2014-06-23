@@ -8,6 +8,8 @@ Epa Changelog
 	* Autoload using Composer PSR-4 autoloader.
 	* Tests use PSR-4 namespacing.
 	* Tests use phpunit xml file for configuration.
+    * Formatting conform to PSR-2.
+    * Added code coverage to phpunit xml configuration.
 
 0.3.0
 

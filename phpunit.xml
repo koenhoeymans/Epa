@@ -11,8 +11,8 @@
         <blacklist>
             <directory>./vendor</directory>
         </blacklist>
-    </filter>
+    <filter>
     <logging>
-        <log type="coverage-html" target="./codecoverage" />
+        <log type="coverage-html" target="./build/codecoverage" />
     </logging>
 </phpunit>
