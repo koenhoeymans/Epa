@@ -224,3 +224,4 @@ While Fjor creates the objectgraph it can be told to add the `EventDispatcher`
 instance to every instance of a class that implements `Observable` or upon construction.
 This means that you actually don't have to do any work in adding the `EventDispatcher`
 and can forget about it while Fjor does the work for you.
+
