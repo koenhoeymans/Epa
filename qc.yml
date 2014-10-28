@@ -1,0 +1,11 @@
+settings:
+    build_dir: build
+    ignore:
+        - vendor
+
+tests:
+    phploc:
+    phpunit:
+        - codecoverage
+    phpcs:
+    phpcpd:
