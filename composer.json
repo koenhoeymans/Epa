@@ -11,7 +11,8 @@
 		"php": ">=5.4.6"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "*"
+		"phpunit/phpunit": "*",
+		"qualitycheck/qualitycheck": "*"
 	},
 	"autoload": {
 		"psr-4": { "Epa\\": ["src/", "tests/unit", "tests/e2e"] }
