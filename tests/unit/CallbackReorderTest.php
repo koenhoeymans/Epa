@@ -2,7 +2,7 @@
 
 namespace Epa;
 
-class CallbackReorderTest extends \PHPUnit_Framework_TestCase
+class CallbackReorderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

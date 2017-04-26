@@ -2,7 +2,7 @@
 
 namespace Epa;
 
-class SampleUseTest extends \PHPUnit_Framework_TestCase
+class SampleUseTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

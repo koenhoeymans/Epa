@@ -1,7 +1,13 @@
-Epa Changelog
-=============
+# Epa Changelog
 
-0.4.0
+## [Unreleased]
+
+### Changed
+
+- UnitTests adjusted to work with PHPUnit 6.0
+
+
+## [0.4.0] - 2014-12-16
 
 	* Moved `EndToEndTests` and `UnitTests` to `tests`.
 	* Renamed `Epa` folder to `src`.
@@ -10,6 +16,8 @@ Epa Changelog
 	* Tests use phpunit xml file for configuration.
     * Formatting conform to PSR-2.
     * Added code coverage to phpunit xml configuration.
+
+## older changes
 
 0.3.0
 

@@ -2,7 +2,7 @@
 
 namespace Epa\Api;
 
-class ObserverStoreTest extends \PHPUnit_Framework_TestCase
+class ObserverStoreTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test
@@ -10,8 +10,8 @@ class ObserverStoreTest extends \PHPUnit_Framework_TestCase
     public function notifiesObserversOfEvent()
     {
         $observableClass = new \Epa\ClassWithEvent();
-        $observer = $this->getMock('Epa\\Api\\Observer');
-        $event = $this->getMock('Epa\\Api\\Event');
+        $observer = $this->createMock('Epa\\Api\\Observer');
+        $event = $this->createMock('Epa\\Api\\Event');
 
         $observer->expects($this->once())->method('notify')->with($event);
 

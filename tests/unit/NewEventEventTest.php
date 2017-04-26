@@ -2,7 +2,7 @@
 
 namespace Epa;
 
-class NewEventEventTest extends \PHPUnit_Framework_TestCase
+class NewEventEventTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @test

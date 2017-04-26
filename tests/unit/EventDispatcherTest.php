@@ -2,7 +2,7 @@
 
 namespace Epa;
 
-class EventDispatcherTest extends \PHPUnit_Framework_TestCase
+class EventDispatcherTest extends \PHPUnit\Framework\TestCase
 {
     private $eventDispatcher;
 
@@ -20,7 +20,7 @@ class EventDispatcherTest extends \PHPUnit_Framework_TestCase
      */
     public function asksPluginsToRegisterForAnEventWithCallback()
     {
-        $plugin = $this->getMock('Epa\\Api\\Plugin');
+        $plugin = $this->createMock('Epa\\Api\\Plugin');
         $plugin->expects($this->once())->method('registerHandlers');
 
         $this->eventDispatcher->addPlugin($plugin);
