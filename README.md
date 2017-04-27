@@ -1,8 +1,7 @@
-#EPA#
+# EPA
 
 
-What is it?
-===========
+## What is it?
 
 EPA stands for Event-based Plugin Architecture. These are some simple classes
 and interfaces that together form a whole that can be used to let plugins
@@ -10,11 +9,9 @@ enhance your code. The plugins can register themselves for certain events and ar
 notified of and passed the event when it occures.
 
 
-Using it
-========
+## Using it
 
-Events and the observer pattern
--------------------------------
+### Events and the observer pattern
 
 Let's first look at what an event is. Actually an event can be just about everything you
 want it to be. It just needs to implement `Epa\Event` but has no defined methods. This
@@ -57,7 +54,7 @@ allow a plugin to change the content of a post:
 		{
 			$this->postContent = $postContent;
 		}
-	
+
 		public function getPostContent()
 		{
 			return $this->postContent;
@@ -118,8 +115,7 @@ Now all observers will be notified and be able to do something with the
 post content. This is the classic observer pattern in action.
 
 
-Plugins And the EventDispatcher
--------------------------------
+### Plugins And the EventDispatcher
 
 The `EventDispatcher`, which implements `\Epa\Api\Observer`, is used to
 dispatch events to callbacks that register for them. An instance can be
@@ -141,7 +137,7 @@ the `\Epa\Api\Plugin` interface.
 				$this->handleFailedLoginEvent($event);
 			});
 		}
-	
+
 		private function handleFailedLoginEvent(FailedLogin $event)
 		{
 			// $event->getUserName();
@@ -204,8 +200,7 @@ Versus
 	$loginChecker->addObserver($eventDispatcher);
 
 
-Advantages and disadvantages
-============================
+## Advantages and disadvantages
 
 One advantage is that your plugin api is simple and the events are easy to document. If
 you choose to put all your events in one directory all your api is in one place and
@@ -224,4 +219,3 @@ While Fjor creates the objectgraph it can be told to add the `EventDispatcher`
 instance to every instance of a class that implements `Observable` or upon construction.
 This means that you actually don't have to do any work in adding the `EventDispatcher`
 and can forget about it while Fjor does the work for you.
-
