@@ -4,7 +4,7 @@ namespace Epa;
 
 class EventNameChangerPlugin implements \Epa\Api\Plugin
 {
-    public function registerHandlers(\Epa\Api\EventDispatcher $mapper)
+    public function registerHandlers(\Epa\Api\EventDispatcher $mapper): void
     {
         $mapper->registerForEvent(
             'Epa\\Api\\NewEventEvent',

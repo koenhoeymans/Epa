@@ -24,10 +24,9 @@ class CallbackReorder implements \Epa\Api\CallbackPosition
     }
 
     /**
-     *
      * @see \Epa\CallbackPosition::first()
      */
-    public function first()
+    public function first(): void
     {
         $arr = $this->arr->offsetGet($this->eventName);
         $key = array_search($this->callback, $arr);

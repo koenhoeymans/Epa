@@ -14,20 +14,11 @@ interface EventDispatcher extends Observer
     /**
      * Add a plugin.
      * A plugin registers handlers for a certain event.
-     *
-     * @param \Epa\Api\Plugin $plugin
-     *
-     * @return void
      */
-    public function addPlugin(\Epa\Api\Plugin $plugin);
+    public function addPlugin(\Epa\Api\Plugin $plugin): void;
 
     /**
      * Register handlers (a callback) for an event.
-     *
-     * @param string   $event
-     * @param callback $handler
-     *
-     * @return \Epa\Api\CallbackPosition
      */
-    public function registerForEvent($event, callable $handler);
+    public function registerForEvent(string $event, callable $handler): \Epa\Api\CallbackPosition;
 }

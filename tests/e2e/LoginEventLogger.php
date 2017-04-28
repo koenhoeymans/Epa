@@ -8,12 +8,13 @@ class LoginEventLogger implements \Epa\Api\Plugin
 
     private $pass = 'NotCalled';
 
-    public function registerHandlers(\Epa\Api\EventDispatcher $mapper)
+    public function registerHandlers(\Epa\Api\EventDispatcher $mapper): void
     {
         $mapper->registerForEvent('LoginEvent', function (LoginEvent $event) {
             $this->handleLogin($event);
         });
     }
+
     private function handleLogin(LoginEvent $event)
     {
         $this->name = $event->getName();

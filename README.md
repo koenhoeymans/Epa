@@ -13,9 +13,7 @@ notified of and passed the event when it occures.
 
 ### Events and the observer pattern
 
-Let's first look at what an event is. Actually an event can be just about everything you
-want it to be. It just needs to implement `Epa\Event` but has no defined methods. This
-can be an event:
+An event can be anything you like, it just needs to implement `Epa\Event` which is an interface with no defined methods. This can be an event:
 
 	use Epa\Api\Event;
 

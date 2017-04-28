@@ -6,7 +6,7 @@ class FailedLoginLogger implements \Epa\Api\Observer
 {
     private $log;
 
-    public function notify(\Epa\Api\Event $event)
+    public function notify(\Epa\Api\Event $event): void
     {
         if (!($event instanceof \Epa\LoginEvent)) {
             return;

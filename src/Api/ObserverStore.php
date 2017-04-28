@@ -4,8 +4,7 @@ namespace Epa\Api;
 
 /**
  * Implements `\Epa\Api\Observable`.
- * Provides a basic implementation of
- * the observer pattern.
+ * Provides a basic implementation of the observer pattern.
  */
 trait ObserverStore
 {
@@ -13,10 +12,8 @@ trait ObserverStore
 
     /**
      * Adds an observer.
-     *
-     * @return void
      */
-    public function addObserver(Observer $observer)
+    public function addObserver(Observer $observer): void
     {
         $this->observers [] = $observer;
     }
@@ -24,10 +21,8 @@ trait ObserverStore
     /**
      * Utility method.
      * Notifies all observers of an event.
-     *
-     * @return void
      */
-    protected function notify(Event $event)
+    protected function notify(Event $event): void
     {
         foreach ($this->observers as $observer) {
             $observer->notify($event);

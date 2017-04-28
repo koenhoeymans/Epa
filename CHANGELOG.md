@@ -5,6 +5,7 @@
 ### Changed
 
 - UnitTests adjusted to work with PHPUnit 6.0
+- Added return types and and type declarations new in PHP 7.0 and 7.1.
 
 
 ## [0.4.0] - 2014-12-16

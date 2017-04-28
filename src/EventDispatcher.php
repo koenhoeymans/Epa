@@ -12,10 +12,9 @@ class EventDispatcher implements \Epa\Api\Observer, \Epa\Api\EventDispatcher
     }
 
     /**
-     *
      * @see \Epa\Api\Observer::notify()
      */
-    public function notify(\Epa\Api\Event $event)
+    public function notify(\Epa\Api\Event $event): void
     {
         $newEventEvent = new \Epa\NewEventEvent(
             array_merge(
@@ -33,10 +32,9 @@ class EventDispatcher implements \Epa\Api\Observer, \Epa\Api\EventDispatcher
     }
 
     /**
-     *
      * @see \Epa\Api\EventDispatcher::registerForEvent()
      */
-    public function registerForEvent($event, callable $callback)
+    public function registerForEvent(string $event, callable $callback): \Epa\Api\CallbackPosition
     {
         $this->observers[$event][] = $callback;
 
@@ -44,10 +42,9 @@ class EventDispatcher implements \Epa\Api\Observer, \Epa\Api\EventDispatcher
     }
 
     /**
-     *
      * @see \Epa\Api\EventDispatcher::addPlugin()
      */
-    public function addPlugin(\Epa\Api\Plugin $plugin)
+    public function addPlugin(\Epa\Api\Plugin $plugin): void
     {
         $plugin->registerHandlers($this);
     }

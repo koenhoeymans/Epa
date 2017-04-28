@@ -9,26 +9,16 @@ interface NewEventEvent extends \Epa\Api\Event
 {
     /**
      * Get the names of the event.
-     *
-     * @return array
      */
-    public function getEventNames();
+    public function getEventNames(): array;
 
     /**
      * Adds an event name for this event.
-     *
-     * @param string $name
-     *
-     * @return void
      */
-    public function addName($name);
+    public function addName(string $name): void;
 
     /**
      * Removes an event name.
-     *
-     * @param string $name
-     *
-     * @return void
      */
-    public function removeName($name);
+    public function removeName(string $name): void;
 }

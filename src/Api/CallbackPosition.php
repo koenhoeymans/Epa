@@ -16,8 +16,6 @@ interface CallbackPosition
      * afterwards also asks to be called first. So one cannot have 100%
      * guarantee that it will really be called first when there are other
      * callbacks registering for the event.
-     *
-     * @return void
      */
-    public function first();
+    public function first(): void;
 }

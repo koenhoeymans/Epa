@@ -9,10 +9,8 @@ class EventDispatcherFactory
 {
     /**
      * Creates an `EventDispatcher`.
-     *
-     * @retun \Epa\Api\EventDispatcher
      */
-    public static function create()
+    public static function create(): \Epa\Api\EventDispatcher
     {
         return new \Epa\EventDispatcher();
     }

@@ -12,28 +12,25 @@ class NewEventEvent implements \Epa\Api\NewEventEvent
     }
 
     /**
-     *
      * @see \Epa\Api\NewEventEvent::getEventNames()
      */
-    public function getEventNames()
+    public function getEventNames(): array
     {
         return $this->names;
     }
 
     /**
-     *
      * @see \Epa\Api\NewEventEvent::addName()
      */
-    public function addName($name)
+    public function addName(string $name): void
     {
         $this->names[] = $name;
     }
 
     /**
-     *
      * @see \Epa\Api\NewEventEvent::removeName()
      */
-    public function removeName($name)
+    public function removeName(string $name): void
     {
         $key = array_search($name, $this->names);
 

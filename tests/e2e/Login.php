@@ -10,7 +10,7 @@ class Login implements \Epa\Api\Observable
 
     private $pass = 'baz';
 
-    public function login($name, $pass)
+    public function login($name, $pass): void
     {
         /**
          * do stuff
