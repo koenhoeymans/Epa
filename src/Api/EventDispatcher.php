@@ -13,7 +13,9 @@ interface EventDispatcher extends Observer
 {
     /**
      * Add a plugin.
-     * A plugin registers handlers for a certain event.
+     *
+     * A plugin is asked to register a handler for a certain event (see
+     * `registerForEvent` method).
      */
     public function addPlugin(Plugin $plugin): void;
 
