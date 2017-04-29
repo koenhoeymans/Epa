@@ -1,7 +1,6 @@
 <?php
 
 namespace Epa\Api;
-use Fjor\Api\Dsl\GivenClassOrInterface\ThenUse;
 
 /**
  * Needs to be implemented by a class that wants to make use of observers.
