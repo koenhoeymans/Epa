@@ -16,7 +16,7 @@ class EventDispatcher implements \Epa\Api\Observer, \Epa\Api\EventDispatcher
      */
     public function notify(\Epa\Api\Event $event): void
     {
-        $newEventEvent = new \Epa\NewEventEvent(
+        $newEventEvent = new NewEventEvent(
             array_merge(
                 array(get_class($event)),
                 class_parents($event),

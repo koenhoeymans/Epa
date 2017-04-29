@@ -11,5 +11,5 @@ interface Observer
     /**
      * To notify the observer of an event.
      */
-    public function notify(\Epa\Api\Event $event): void;
+    public function notify(Event $event): void;
 }

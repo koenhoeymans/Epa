@@ -10,5 +10,5 @@ interface Plugin
     /**
      * Passes the `EventDispatcher` so it can register handlers for an event.
      */
-    public function registerHandlers(\Epa\Api\EventDispatcher $eventDispatcher): void;
+    public function registerHandlers(EventDispatcher $eventDispatcher): void;
 }

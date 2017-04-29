@@ -5,7 +5,7 @@ namespace Epa\Api;
 /**
  * This event is 'thrown' when there is a new event.
  */
-interface NewEventEvent extends \Epa\Api\Event
+interface NewEventEvent extends Event
 {
     /**
      * Get the names of the event.

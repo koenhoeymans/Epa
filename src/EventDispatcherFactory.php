@@ -12,6 +12,6 @@ class EventDispatcherFactory
      */
     public static function create(): \Epa\Api\EventDispatcher
     {
-        return new \Epa\EventDispatcher();
+        return new EventDispatcher();
     }
 }

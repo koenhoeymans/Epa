@@ -12,5 +12,5 @@ interface Observable
      * Adds an observer.
      * The observer should be notified of any events.
      */
-    public function addObserver(\Epa\Api\Observer $observer): void;
+    public function addObserver(Observer $observer): void;
 }
