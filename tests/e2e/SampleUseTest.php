@@ -26,6 +26,8 @@ class SampleUseTest extends \PHPUnit\Framework\TestCase
         // attempts.
         $login = new \Epa\Login();
 
+        // Two styles can be implemented.
+        //
         // # Observer style
         //
         // We can add an observer to our login directly since it implements the
