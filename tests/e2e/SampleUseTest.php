@@ -8,7 +8,7 @@ class SampleUseTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function sampleApplicationUsingEpa()
+    public function sampleApplicationUsingEpa(): void
     {
         // A *plugin* registers one or more observers for an event. When the
         // event happens, the callbacks are called.
@@ -28,8 +28,8 @@ class SampleUseTest extends \PHPUnit\Framework\TestCase
 
         // # Observer style
         //
-        // We can add an observer to our login directly. It implements the
-        // `Observer` interface. It then gets notified of any event happening.
+        // We can add an observer to our login directly since it implements the
+        // `Observer` interface. This observer then gets notified of any event happening.
 
         $logObserver = new \Epa\FailedLoginLogger();
         $login->addObserver($logObserver);
