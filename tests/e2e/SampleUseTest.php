@@ -10,10 +10,16 @@ class SampleUseTest extends \PHPUnit\Framework\TestCase
      */
     public function sampleApplicationUsingEpa()
     {
-        // First some definitions. A plugin registers one or more callbacks for an event.
-        // An event is an object that is 'thrown' when you want to notify that
-        // something of potential interest is going to happen/is happening/happened.
-        // Observers are notified when an event happens.
+        // A *plugin* registers one or more observers for an event. When the
+        // event happens, the callbacks are called.
+        //
+        // An *event* is an object that is passed to the observers by an observable when
+        // something of interest has happened.
+        //
+        // An *observer* watches for events and is notified when an event happens.
+        //
+        // An *observable* is an object that is observed by an observer for one or more
+        // events that may happen. It notifies the observers of the event.
 
         // We'll use a login class that is observable. It implements the `Observable`
         // interface meaning we can add observers to it. These are notified of login
