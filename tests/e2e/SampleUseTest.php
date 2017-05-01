@@ -4,74 +4,73 @@ namespace Epa;
 
 class SampleUseTest extends \PHPUnit\Framework\TestCase
 {
-
     /**
      * @test
      */
     public function sampleApplicationUsingEpa(): void
     {
-        // A *plugin* registers one or more observers for an event. When the
-        // event happens, the callbacks are called.
-        //
-        // An *event* is an object that is passed to the observers by an observable when
-        // something of interest has happened.
-        //
-        // An *observer* watches for events and is notified when an event happens.
-        //
-        // An *observable* is an object that is observed by an observer for one or more
-        // events that may happen. It notifies the observers of the event.
+        // We create a very simple login class which notifies of login
+        // attempts that were made. The alerts of login attempts will be send to the observers
+        // of this class while the login class itself is observable by these observers for these login events.
+        // This means that the login class must implement the `Observable` interface while
+        // the objects that are waiting to be notified of login attempts must implement
+        // the `Observer` interface. When a login attempt has happened the login class
+        // must create an event that can be passed to the observers so they are notified. The event is
+        // a class that implements the `Event` interface.
 
-        // We'll use a login class that is observable. It implements the `Observable`
-        // interface meaning we can add observers to it. These are notified of login
-        // attempts.
+        // Our login class has a login and password hardcoded for simplicity. When a login
+        // attempt is made it create a new `LoginEvent` and notifies all observers.
         $login = new \Epa\Login();
 
-        // Two styles can be implemented.
-        //
-        // # Observer style
-        //
-        // We can add an observer to our login directly since it implements the
-        // `Observer` interface. This observer then gets notified of any event happening.
+        // Our login class uses the trait `ObserverStore` which already implements
+        // the `Observable` interface and adds a utility method to notify all
+        // observers of the event. To become an observable class then there really isn't
+        // much needed: use the trait and add the observable interface as implemented.
 
-        $logObserver = new \Epa\FailedLoginLogger();
-        $login->addObserver($logObserver);
+        // A class that logs failed login attempts could be added as an observer.
+        $failedLoginLogger = new \Epa\FailedLoginLogger();
+        $login->addObserver($failedLoginLogger);
 
+        // Now when a our login system notifies observers of a login, the failed
+        // login logger will examine the event and in case it was indeed a failed
+        // login attempt log all failed logins.
         $login->login('foo', 'bar');
-        $this->assertEquals('failure for foo:bar', $logObserver->getLog());
+        $this->assertEquals('failure for foo:bar', $failedLoginLogger->getLog());
 
-        // # Plugin style
-        //
-        // The EventDispatcher is an interface that extends the observer interface and
-        // thus can be added like the above `SuccessLoginLogger`. It listens to events
-        // but dispatches the events to plugins. Plugins register themselves with
-        // the EventDispatcher with `addPlugin`. The EventDispatcher then calls
-        // them back giving these plugins the chance to register callbacks for certain
-        // events. That means that it listens to events and notifies all callbacks
-        // only when a certain event happened they are interested in. It provides
-        // a central point to register plugins to have callbacks notified of specific events.
-        //
-        // Plugins register callbacks to events and this registration is by
-        // the class name of the events (this can be changed, see below).
+        // This simple application has:
+        //  * an observable: the login class, helped by a trait 'ObserverStore'
+        //  * an observer: the failed login logger class
+        //  * an event: created by the login class and passed to the observers
 
+        // A way to extend the setup is to use an `EventDispatcher`. This class
+        // is also an observer so it can be added to any observables but it does
+        // more. It dispatches the events it gets notified off and only to those interested in it.
+        // A `Plugin` is what registers the code that will handle an event.
         $eventDispatcher = \Epa\EventDispatcherFactory::create();
-        $login->addObserver($eventDispatcher); // EventDispatcher = observer style
+        $login->addObserver($eventDispatcher);
 
-        // The `SuccessLoginLogger` implements the `Plugin` interface and
-        // can thus be registered with the EventDispatcher and adds a callback
-        // for a certain event:
-        //
-        // $mapper->registerForEvent(
-        //     'Epa\\EndToEndTests\\Support\\LoginEvent', $this->handleSuccessLogin()
-        // );
-
+        // Instead of adding more observers, the EventDispatcher is added everywhere
+        // as an observer and plugins register themselves only with the EventDispatcher.
         $logPlugin = new \Epa\SuccessLoginLogger();
         $eventDispatcher->addPlugin($logPlugin);
 
         $login->login('bar', 'baz');
         $this->assertEquals('success for bar:baz', $logPlugin->getLog());
 
+        // When a plugin is added to the event dispatcher it is asked to register
+        // a callback for a certain event.
+
+        // The `SuccessLoginLogger` implements the `Plugin` interface and
+        // can thus be registered with the EventDispatcher and adds a callback
+        // for a certain event:
+        //
+        // $mapper->registerForEvent(
+        //     'Epa\\LoginEvent', $this->handleSuccessLogin()
+        // );
+
         // It is possible to add plugins that register callbacks for events
-        // thrown by the EventDispatcher itself. One possible use of this is to
+        // thrown by the EventDispatcher itself. An event thrown by the event
+        // dispatcher is the `NewEventEvent`. One possible use of this is to
         // change the way events are named. We could change this from using
         // the fully qualified class name to only the classname itself
         // (eg `Foo` instead of `\MyNamespace\Events\Foo`). That's because the
@@ -102,7 +101,7 @@ class SampleUseTest extends \PHPUnit\Framework\TestCase
         // order of registration. Sometimes you may want to add a callback before
         // any other callback. Inside the plugin you can achieve this using `first`:
         //
-        // $mapper
+        // $eventDispatcher
         // ->registerForEvent('login', function () {$this->handleEvent($event); })
         // ->first();
         //

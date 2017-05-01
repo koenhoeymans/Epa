@@ -7,7 +7,7 @@ class CallbackReorderTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function changesCallbackToFirstPosition()
+    public function changesCallbackToFirstPosition(): void
     {
         $callback1 = function () {
         };

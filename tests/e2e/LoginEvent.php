@@ -17,12 +17,12 @@ class LoginEvent implements \Epa\Api\Event
         $this->succeeded = $succeeded;
     }
 
-    public function loginSucceeded()
+    public function loginSucceeded(): bool
     {
         return (bool) $this->succeeded;
     }
 
-    public function loginFailed()
+    public function loginFailed(): bool
     {
         return !$this->loginSucceeded();
     }

@@ -22,7 +22,7 @@ class FailedLoginLogger implements \Epa\Api\Observer
             . $event->getPass();
     }
 
-    public function getLog()
+    public function getLog(): string
     {
         return $this->log;
     }

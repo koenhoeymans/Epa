@@ -7,7 +7,7 @@ class NewEventEventTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function hasAllEventNames()
+    public function hasAllEventNames(): void
     {
         $event = new \Epa\NewEventEvent(array('foo', 'bar'));
 
@@ -17,7 +17,7 @@ class NewEventEventTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function anEventNameCanBeAdded()
+    public function anEventNameCanBeAdded(): void
     {
         $event = new \Epa\NewEventEvent(array('foo'));
         $event->addName('bar');
@@ -28,7 +28,7 @@ class NewEventEventTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function anEventNameCanBeRemoved()
+    public function anEventNameCanBeRemoved(): void
     {
         $event = new \Epa\NewEventEvent(array('foo', 'bar', 'baz'));
         $event->removeName('baz');

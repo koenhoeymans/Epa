@@ -13,7 +13,8 @@ class LoginNameChanger implements \Epa\Api\Plugin
             }
         )->first();
     }
-    private function handleLogin(LoginEvent $event)
+
+    private function handleLogin(LoginEvent $event): void
     {
         $event->setName('baz');
     }

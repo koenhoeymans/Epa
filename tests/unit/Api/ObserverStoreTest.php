@@ -7,7 +7,7 @@ class ObserverStoreTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function notifiesObserversOfEvent()
+    public function notifiesObserversOfEvent(): void
     {
         $observableClass = new \Epa\ClassWithEvent();
         $observer = $this->createMock('Epa\\Api\\Observer');

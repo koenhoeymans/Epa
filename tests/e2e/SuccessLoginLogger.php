@@ -14,7 +14,7 @@ class SuccessLoginLogger implements \Epa\Api\Plugin
         );
     }
 
-    private function handleSuccessLogin()
+    private function handleSuccessLogin(): callable
     {
         return function (\Epa\LoginEvent $event) {
             if (! $event->loginSucceeded()) {

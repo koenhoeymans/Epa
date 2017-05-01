@@ -14,7 +14,7 @@ class EventNameChangerPlugin implements \Epa\Api\Plugin
         );
     }
 
-    private function handleEvent(\Epa\Api\NewEventEvent $event)
+    private function handleEvent(\Epa\Api\NewEventEvent $event): void
     {
         $names = $event->getEventNames();
         foreach ($names as $name) {

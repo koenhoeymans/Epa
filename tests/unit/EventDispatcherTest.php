@@ -8,7 +8,7 @@ class EventDispatcherTest extends \PHPUnit\Framework\TestCase
 
     private $fooEvent;
 
-    public function setup()
+    public function setup(): void
     {
         $this->eventDispatcher = new \Epa\EventDispatcher();
         $this->fooEvent = new FooEvent();
@@ -18,7 +18,7 @@ class EventDispatcherTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function asksPluginsToRegisterForAnEventWithCallback()
+    public function asksPluginsToRegisterForAnEventWithCallback(): void
     {
         $plugin = $this->createMock('Epa\\Api\\Plugin');
         $plugin->expects($this->once())->method('registerHandlers');
@@ -29,7 +29,7 @@ class EventDispatcherTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function registeredHandlersArePassedEventWhenItHappens()
+    public function registeredHandlersArePassedEventWhenItHappens(): void
     {
         $this->callbackCalled = false;
 
@@ -50,7 +50,7 @@ class EventDispatcherTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function notifiesHandlersOnlyForEventsTheyRegisteredFor()
+    public function notifiesHandlersOnlyForEventsTheyRegisteredFor(): void
     {
         $this->eventDispatcher->registerForEvent(
             'BarEvent',
@@ -65,7 +65,7 @@ class EventDispatcherTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function throwsApiNewEventEventWhenAnEventIsThrown()
+    public function throwsApiNewEventEventWhenAnEventIsThrown(): void
     {
         $this->callbackCalled = false;
 
@@ -86,7 +86,7 @@ class EventDispatcherTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      */
-    public function notifiesForAllEventNames()
+    public function notifiesForAllEventNames(): void
     {
         $this->callbackOriginalCalled = false;
         $this->callbackAltCalled = false;
