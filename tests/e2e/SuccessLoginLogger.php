@@ -6,9 +6,9 @@ class SuccessLoginLogger implements \Epa\Api\Plugin
 {
     private $log = '';
 
-    public function registerHandlers(\Epa\Api\EventDispatcher $mapper): void
+    public function registerHandlers(\Epa\Api\EventDispatcher $eventDispatcher): void
     {
-        $mapper->registerForEvent(
+        $eventDispatcher->registerForEvent(
             'Epa\\LoginEvent',
             $this->handleSuccessLogin()
         );
