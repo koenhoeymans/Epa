@@ -12,9 +12,6 @@ class Login implements \Epa\Api\Observable
 
     public function login($name, $pass): void
     {
-        /**
-         * do stuff
-         */
         $success = ($this->username === $name && $this->pass === $pass);
         $this->notify(new \Epa\LoginEvent($name, $pass, $success));
     }
