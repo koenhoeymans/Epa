@@ -4,7 +4,7 @@
 
 ### Changed
 
-- UnitTests adjusted to work with PHPUnit 6.0
+- UnitTests adjusted to work with PHPUnit 7.*
 - Added return types and and type declarations new in PHP 7.0 and 7.1.
 - Minimum PHP 7.2 required.
 - Changelog format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
