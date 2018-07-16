@@ -10,8 +10,7 @@
 		"php": ">=7.2"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "7.*",
-		"qualitycheck/qualitycheck": "*"
+		"phpunit/phpunit": "7.*"
 	},
 	"autoload": {
 		"psr-4": { "Epa\\": ["src/", "tests/unit", "tests/e2e"] }
