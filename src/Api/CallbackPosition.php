@@ -4,9 +4,16 @@ namespace Epa\Api;
 
 /**
  * Part of the fluent interface when registering callbacks starting with
- * `registerForEvent`.
- * The position of the callback can be specified when
- * one needs to make sure a callback is e.g. called before other callbacks.
+ * `\Epa\Api\EventDispatcher::registerForEvent`.
+ *
+ * The position of the callback in the list of callbacks for an event can be
+ * specified when one needs to make sure a callback is e.g. called before other
+ * callbacks.
+ *
+ * Example use:
+ *
+ *     $eventDispatcher = \Epa\Api\EventDispatcherFactory:create();
+ *     $eventDispatcher->registerForEvent('Foo\BarEvent', $myCallback)->first();
  */
 interface CallbackPosition
 {
