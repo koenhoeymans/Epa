@@ -1,7 +1,6 @@
 # Epa Changelog
 
-## [Unreleased]
-
+## [0.5.0] - 2018-08-07
 ### Changed
 
 - Tests adjusted to work with PHPUnit 7.*
