@@ -3,7 +3,7 @@
 	"description": "Event-based Plugin Architecture",
 	"license": "BSD-2-Clause",
 	"authors": [{
-		"name": "Koen Hoeymans",
+		"name": "Koen Hoeymans"
 	}],
 	"require": {
 		"php": ">=7.2"
