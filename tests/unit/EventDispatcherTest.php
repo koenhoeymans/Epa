@@ -64,9 +64,7 @@ class EventDispatcherTest extends \PHPUnit\Framework\TestCase
 
         $this->eventDispatcher->notify($this->fooEvent);
 
-        if (!$this->callbackCalled) {
-            $this->fail('NewEventEvent not thrown.');
-        }
+        $this->assertTrue($this->callbackCalled, 'NewEventEven not thrown');
     }
 
     public function testNotifiesForAllEventNames(): void
