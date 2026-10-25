@@ -4,10 +4,7 @@ namespace Epa;
 
 class SampleUseTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @test
-     */
-    public function sampleApplicationUsingEpa(): void
+    public function testSampleApplicationUsingEpa(): void
     {
         // We create a very simple login class which notifies of login
         // attempts that were made. The alerts of login attempts will be send to the observers

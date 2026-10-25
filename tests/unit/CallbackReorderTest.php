@@ -4,10 +4,7 @@ namespace Epa;
 
 class CallbackReorderTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @test
-     */
-    public function changesCallbackToFirstPosition(): void
+    public function testChangesCallbackToFirstPosition(): void
     {
         $callback1 = function () {
         };

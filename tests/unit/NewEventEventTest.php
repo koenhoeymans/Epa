@@ -4,20 +4,14 @@ namespace Epa;
 
 class NewEventEventTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @test
-     */
-    public function hasAllEventNames(): void
+    public function testHasAllEventNames(): void
     {
         $event = new \Epa\NewEventEvent(array('foo', 'bar'));
 
         $this->assertEquals(array('foo', 'bar'), $event->getEventNames());
     }
 
-    /**
-     * @test
-     */
-    public function anEventNameCanBeAdded(): void
+    public function testAnEventNameCanBeAdded(): void
     {
         $event = new \Epa\NewEventEvent(array('foo'));
         $event->addName('bar');
@@ -25,10 +19,7 @@ class NewEventEventTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(array('foo', 'bar'), $event->getEventNames());
     }
 
-    /**
-     * @test
-     */
-    public function anEventNameCanBeRemoved(): void
+    public function testAnEventNameCanBeRemoved(): void
     {
         $event = new \Epa\NewEventEvent(array('foo', 'bar', 'baz'));
         $event->removeName('baz');
