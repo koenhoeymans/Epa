@@ -8,7 +8,7 @@ class ObserverStoreTest extends \PHPUnit\Framework\TestCase
     {
         $observableClass = new \Epa\ClassWithEvent();
         $observer = $this->createMock('Epa\\Api\\Observer');
-        $event = $this->createMock('Epa\\Api\\Event');
+        $event = $this->createStub('Epa\\Api\\Event');
 
         $observer->expects($this->once())->method('notify')->with($event);
 
