@@ -1,15 +1,16 @@
-<phpunit>
-	<testsuites>
-		<testsuite name="unittests">
-			<directory>tests/unit</directory>
-        </testsuite>
-        <testsuite name="end2endtests">
-            <directory>tests/e2e</directory>
-        </testsuite>
-	</testsuites>
-    <filter>
-        <whitelist>
-            <directory>./src</directory>
-        </whitelist>
-    </filter>
+<?xml version="1.0"?>
+<phpunit cacheDirectory=".phpunit.cache">
+  <testsuites>
+    <testsuite name="unittests">
+      <directory>tests/unit</directory>
+    </testsuite>
+    <testsuite name="end2endtests">
+      <directory>tests/e2e</directory>
+    </testsuite>
+  </testsuites>
+  <source>
+    <include>
+      <directory>./src</directory>
+    </include>
+  </source>
 </phpunit>
