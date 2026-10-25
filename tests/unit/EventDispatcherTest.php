@@ -41,14 +41,18 @@ class EventDispatcherTest extends \PHPUnit\Framework\TestCase
 
     public function testNotifiesHandlersOnlyForEventsTheyRegisteredFor(): void
     {
+        $this->callbackCalled = false;
+
         $this->eventDispatcher->registerForEvent(
             'BarEvent',
             function (\Epa\FooEvent $event) {
-                $this->fail();
+                $this->callbackCalled = true;    
             }
         );
 
         $this->eventDispatcher->notify($this->fooEvent);
+
+        $this->assertFalse($this->callbackCalled);
     }
 
     public function testThrowsApiNewEventEventWhenAnEventIsThrown(): void
