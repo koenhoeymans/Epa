@@ -99,11 +99,13 @@ class EventDispatcherTest extends \PHPUnit\Framework\TestCase
         $this->eventDispatcher->notify($this->fooEvent);
         $this->eventDispatcher->notify($this->barEvent);
 
-        if (!$this->callbackOriginalCalled) {
-            $this->fail('Full eventname registrars not notified.');
-        }
-        if (!$this->callbackAltCalled) {
-            $this->fail('Alternative eventname registrars not notified.');
-        }
+        $this->assertTrue(
+            $this->callbackOriginalCalled,
+            'Full eventname registrars not notified.'
+        );
+        $this->assertTrue(
+            $this->callbackAltCalled,
+            'Alternative eventname registrars not notified.'
+        );
     }
 }
